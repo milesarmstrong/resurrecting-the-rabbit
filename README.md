@@ -8,14 +8,14 @@ The [Nabaztag](http://en.wikipedia.org/wiki/Nabaztag), a Wi-Fi enabled smart rab
 
 ##Architecture
 - The internal circuitry of the Nabaztag was replaced with a BeagleBone Black connected via a serial connection to a custom built AVR circuit which controlled the ear motors and LEDs..
-	- The [AVR code](https://github.com/milesarmstrong/resurrecting-rabbit/blob/master/avr_setup/nabaztag_avr.ino).
-	- Detailed setup [instructions](https://github.com/milesarmstrong/resurrecting-rabbit/tree/master/beaglebone_setup) for the BeagleBone Black.
-	- [Code](https://github.com/milesarmstrong/resurrecting-rabbit/tree/master/nabaztag_code/nabaztagclient/beaglebone) for the Python client running on the BeagleBone Black.
-	- An [API](https://github.com/milesarmstrong/resurrecting-rabbit/tree/master/nabaztag_code/nabaztagclient/restapi) was created, running on the BeagleBone Black, to allow direct control of the Nabaztag.
+	- The [AVR code](https://github.com/milesarmstrong/resurrecting-the-rabbit/blob/master/avr_setup/nabaztag_avr.ino).
+	- Detailed setup [instructions](https://github.com/milesarmstrong/resurrecting-the-rabbit/tree/master/beaglebone_setup) for the BeagleBone Black.
+	- [Code](https://github.com/milesarmstrong/resurrecting-the-rabbit/tree/master/nabaztag_code/nabaztagclient/beaglebone) for the Python client running on the BeagleBone Black.
+	- An [API](https://github.com/milesarmstrong/resurrecting-the-rabbit/tree/master/nabaztag_code/nabaztagclient/restapi) was created, running on the BeagleBone Black, to allow direct control of the Nabaztag.
 
-- A [web application](https://github.com/milesarmstrong/resurrecting-rabbit/tree/master/nabaztag_code/nabaztagserver) was created to allow control of the Nabaztag from a browser, over a WebSocket connection.
+- A [web application](https://github.com/milesarmstrong/resurrecting-the-rabbit/tree/master/nabaztag_code/nabaztagserver) was created to allow control of the Nabaztag from a browser, over a WebSocket connection.
 
 
 ##Report
-The final report submitted upon completion of the project is available [here](https://github.com/milesarmstrong/resurrecting-rabbit/blob/master/reports/final/report/finalreport.pdf?raw=tru). Full references for any open-source projects used are available at the end of the report.
+The final report submitted upon completion of the project is available [here](https://github.com/milesarmstrong/resurrecting-the-rabbit/blob/master/reports/final/report/finalreport.pdf?raw=tru). Full references for any open-source projects used are available at the end of the report.
 
