@@ -1,0 +1,29 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        {% if nabaztag_list %}
+            <h1>Available Nabaztags</h1>
+            <ul>
+                {% for nabaztag in nabaztag_list %}
+                    <li>
+                        <a href="/control/{{ nabaztag.id }}">
+                            {% if nabaztag.name %}
+                                {{ nabaztag.name }}
+                            {% else %}
+                                Unnamed Nabaztag
+                            {% endif %}
+                                (<code>{{ nabaztag.id }}</code>)
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No Nabaztags are registered.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

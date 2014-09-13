@@ -1,0 +1,17 @@
+--- settings.py	2014-03-26 17:04:19.106120590 +0000
++++ settings_dev.py	2014-03-26 17:05:02.838120173 +0000
+@@ -21,11 +21,11 @@
+ SECRET_KEY = '_-j^f1$)wi7sln)zsh)#yse0+nv=v5e^%9v!$eh=a6cus69x96'
+ 
+ # SECURITY WARNING: don't run with debug turned on in production!
+-DEBUG = False
++DEBUG = True
+ 
+-TEMPLATE_DEBUG = False
++TEMPLATE_DEBUG = True
+ 
+-ALLOWED_HOSTS = ['kanga-mhha1g11.ecs.soton.ac.uk']
++ALLOWED_HOSTS = []
+ 
+ 
+ # Application definition

@@ -1,0 +1,11 @@
+--- nabaztagconfig.yaml	2014-03-16 13:14:21.000000000 +0000
++++ nabaztagconfighome.yaml	2014-03-16 13:14:10.000000000 +0000
+@@ -1,6 +1,6 @@
+ server:
+-  hostname: "kanga-mhha1g11.ecs.soton.ac.uk"
+-  port: 80
++  hostname: "10.0.0.29"
++  port: 8000
+ interface: wlan0
+ serial:
+   port: /dev/ttyO1

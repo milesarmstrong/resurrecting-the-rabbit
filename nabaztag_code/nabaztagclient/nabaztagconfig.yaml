@@ -1,0 +1,13 @@
+server:
+  hostname: "kanga-mhha1g11.ecs.soton.ac.uk"
+  port: 80
+interface: wlan0
+serial:
+  port: /dev/ttyO1
+  rate: 9600
+urls:
+  wsurl: ws://{host}:{port}/ws/{identifier}?subscribe-broadcast
+  posturl: http://{host}:{port}/update/{identifier}/
+logs:
+  client: /var/log/nabaztag/nabaztagclient.log
+  api: /var/log/nabaztag/nabaztagapi.log

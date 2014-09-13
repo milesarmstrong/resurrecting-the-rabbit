@@ -1,0 +1,165 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Nabaztag API</title><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.0.1/flatly/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.2/css/font-awesome.min.css"><link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata|Raleway:200"><style>pre code{display:block;padding:.5em;color:#333}
+/* Highlight.js Theme Tomorrow */
+.hljs-comment,.hljs-title{color:#8e908c}.hljs-variable,.hljs-attribute,.hljs-tag,.hljs-regexp,.ruby .hljs-constant,.xml .hljs-tag .hljs-title,.xml .hljs-pi,.xml .hljs-doctype,.html .hljs-doctype,.css .hljs-id,.css .hljs-class,.css .hljs-pseudo{color:#c82829}.hljs-number,.hljs-preprocessor,.hljs-pragma,.hljs-built_in,.hljs-literal,.hljs-params,.hljs-constant{color:#f5871f}.ruby .hljs-class .hljs-title,.css .hljs-rules .hljs-attribute{color:#eab700}.hljs-string,.hljs-value,.hljs-inheritance,.hljs-header,.ruby .hljs-symbol,.xml .hljs-cdata{color:#718c00}.css .hljs-hexcolor{color:#3e999f}.hljs-function,.python .hljs-decorator,.python .hljs-title,.ruby .hljs-function .hljs-title,.ruby .hljs-title .hljs-keyword,.perl .hljs-sub,.javascript .hljs-title,.coffeescript .hljs-title{color:#4271ae}.hljs-keyword,.javascript .hljs-function{color:#8959a8}.hljs{display:block;background:white;color:#4d4d4c;padding:.5em}.coffeescript .javascript,.javascript .xml,.tex .hljs-formula,.xml .javascript,.xml .vbscript,.xml .css,.xml .hljs-cdata{opacity:.5}</style><style>body,
+h4,
+h5 {
+  font-family: 'Roboto' sans-serif !important;
+}
+h1,
+h2,
+h3,
+.aglio {
+  font-family: 'Raleway' sans-serif !important;
+}
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a {
+  display: none;
+}
+h1:hover a,
+h2:hover a,
+h3:hover a,
+h4:hover a,
+h5:hover a {
+  display: inline;
+}
+code {
+  color: #444;
+  background-color: #ddd;
+  font-family: 'Inconsolata' monospace !important;
+}
+a[data-target] {
+  cursor: pointer;
+}
+h4 {
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.back-to-top {
+  position: fixed;
+  z-index: 1;
+  bottom: 0px;
+  right: 24px;
+  padding: 4px 8px;
+  background-color: #eee;
+  text-decoration: none !important;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+.panel {
+  overflow: hidden;
+}
+.panel-heading code {
+  color: #fff;
+  background-color: transparent;
+}
+.panel-heading h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+a.list-group-item {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+a.list-group-item.heading {
+  background-color: #ecf0f1;
+}
+.list-group-item.collapse {
+  display: none;
+}
+#nav {
+  margin-top: 38px;
+  min-width: 255px;
+  top: 0;
+  bottom: 0;
+  padding-right: 12px;
+  padding-bottom: 12px;
+  overflow-y: auto;
+}
+</style></head><body><a href="#top" class="text-muted back-to-top"><i class="fa fa-toggle-up"></i>&nbsp;Back to top</a><div class="container"><div class="row"><div class="col-md-3"><nav id="nav" class="collapse hidden-sm hidden-xs affix nav"><div class="list-group"><a href="#nabaztag-control" class="list-group-item heading">Nabaztag Control</a><a href="#nabaztag-control-ears" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Ears</a><a href="#nabaztag-control-leds" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;LEDs</a><a href="#nabaztag-control-location" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Location</a><a href="#nabaztag-control-weather" class="list-group-item"><i class="fa fa-arrow-circle-down"></i>&nbsp;Weather</a><a href="#nabaztag-control-speech" class="list-group-item"><i class="fa fa-pencil"></i>&nbsp;Speech</a></div><p style="text-align: center"><a href="http://nabaztag.local">http://nabaztag.local</a></p></nav></div><div class="col-md-9"><div><header><div class="page-header"><h1 id="top">Nabaztag API</h1></div></header><div class="description"><p>A RESTful API was developed to reside on the Nabaztag, and allow direct interaction with the device, without the need for the server.</p>
+</div></div><div><div class="panel panel-default"><div class="panel-heading"><h3 id="nabaztag-control">Nabaztag Control&nbsp;<a href="#nabaztag-control"><i class="fa fa-link"></i></a></h3></div><div class="panel-body"><p>There are several API functions available to control the Nabaztag.</p>
+<h4 id="nabaztag-control-ears">Ears&nbsp;<a href="#nabaztag-control-ears"><i class="fa fa-link"></i></a></h4><p>Functions for interacting with the Nabaztag’s ears.</p>
+<section id="nabaztag-control-ears-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">control ear</span><a href="#nabaztag-control-ears-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/nabaztag/api/ear/{ear}</code></div><div class="panel-body"><p>Move an ear on the Nabaztag. Possible positions are from 0 to 17 inclusive. Position 0 corresponds to the ear pointing vertically upright.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>ear</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The ear to move</p>
+<p><strong>Choices:&nbsp;</strong><code>left</code>, <code>right</code></p></dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#278555" class="pull-right">Toggle</a></li><li id="278555" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">pos</span>": <span class="hljs-value"><span class="hljs-number">0</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#992866" class="pull-right">Toggle</a></li><li id="992866" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">201</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Success"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#419859" class="pull-right">Toggle</a></li><li id="419859" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">400</span></span>, 
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Value of pos not in range 0-17."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="nabaztag-control-leds">LEDs&nbsp;<a href="#nabaztag-control-leds"><i class="fa fa-link"></i></a></h4><p>Functions for interacting with the Nabaztag’s LEDs. </p>
+<section id="nabaztag-control-leds-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">control led</span><a href="#nabaztag-control-leds-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/nabaztag/api/led/{led}</code></div><div class="panel-body"><p>Change an LED on the Nabaztag. Provide a value from 0-255 for each of red, green, and blue values.</p>
+</div><ul class="list-group"><li class="list-group-item bg-default"><strong>Parameters</strong></li><li class="list-group-item"><dl class="dl-horizontal"><dt>led</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<p>The ear to move</p>
+<p><strong>Choices:&nbsp;</strong><code>top</code>, <code>bottom</code></p></dd></dl></li></ul><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#795463" class="pull-right">Toggle</a></li><li id="795463" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">red</span>": <span class="hljs-value"><span class="hljs-number">150</span></span>,
+    "<span class="hljs-attribute">green</span>": <span class="hljs-value"><span class="hljs-number">75</span></span>,
+    "<span class="hljs-attribute">blue</span>": <span class="hljs-value"><span class="hljs-number">200</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#36297" class="pull-right">Toggle</a></li><li id="36297" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">201</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Success"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#637591" class="pull-right">Toggle</a></li><li id="637591" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">400</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Value of blue not in range 0-255."</span>
+</span>}
+</code></pre></li></ul></section><h4 id="nabaztag-control-location">Location&nbsp;<a href="#nabaztag-control-location"><i class="fa fa-link"></i></a></h4><p>Functions for utilising the Nabaztag’s location awareness.</p>
+<section id="nabaztag-control-location-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">get location</span><a href="#nabaztag-control-location-get" class="btn btn-xs btn-info">GET</a>&nbsp;<code>/nabaztag/api/location</code></div><div class="panel-body"><p>Returns the current latitude and longitude of the Nabaztag.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#467749" class="pull-right">Toggle</a></li><li id="467749" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">lat</span>": <span class="hljs-value"><span class="hljs-number">50.9229537</span></span>,
+    "<span class="hljs-attribute">lon</span>": <span class="hljs-value">-<span class="hljs-number">1.3984832</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>503</code></strong><a data-toggle="collapse" data-target="#575920" class="pull-right">Toggle</a></li><li id="575920" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">503</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Location service temporarily unavailable"</span>
+</span>}
+</code></pre></li></ul></section><h4 id="nabaztag-control-weather">Weather&nbsp;<a href="#nabaztag-control-weather"><i class="fa fa-link"></i></a></h4><p>Functions for accessing the Nabaztag’s weather information.</p>
+<section id="nabaztag-control-weather-get" class="panel panel-info"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">get weather</span><a href="#nabaztag-control-weather-get" class="btn btn-xs btn-info">GET</a>&nbsp;<code>/nabaztag/api/weather</code></div><div class="panel-body"><p>Returns the current temperature, sunrise time, and sunset time for the Nabaztag’s current location.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>200</code></strong><a data-toggle="collapse" data-target="#286" class="pull-right">Toggle</a></li><li id="286" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">sunrise</span>": <span class="hljs-value"><span class="hljs-number">1394950554</span></span>,
+    "<span class="hljs-attribute">sunset</span>": <span class="hljs-value"><span class="hljs-number">1394993539</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"Southampton"</span></span>,
+    "<span class="hljs-attribute">temp</span>": <span class="hljs-value"><span class="hljs-number">12.88</span></span>,
+}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>503</code></strong><a data-toggle="collapse" data-target="#691513" class="pull-right">Toggle</a></li><li id="691513" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">503</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Weather service temporarily unavailable."</span>
+</span>}            
+</code></pre></li></ul></section><h4 id="nabaztag-control-speech">Speech&nbsp;<a href="#nabaztag-control-speech"><i class="fa fa-link"></i></a></h4><p>Functions for interacting with the Nabaztag’s text-to-speech capabilities.</p>
+<section id="nabaztag-control-speech-put" class="panel panel-warning"><div class="panel-heading"><span style="text-transform: lowercase" class="pull-right">use text-to-speech</span><a href="#nabaztag-control-speech-put" class="btn btn-xs btn-warning">PUT</a>&nbsp;<code>/nabaztag/api/speech</code></div><div class="panel-body"><p>Allows access to the Nabaztag’s text-to-speech service, the provided text will be spoken by the Nabaztag.</p>
+</div><ul class="list-group"><li class="list-group-item"><strong>Request</strong><a data-toggle="collapse" data-target="#612101" class="pull-right">Toggle</a></li><li id="612101" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">text</span>": <span class="hljs-value"><span class="hljs-string">"The string for the Nabaztag to speak"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>201</code></strong><a data-toggle="collapse" data-target="#805491" class="pull-right">Toggle</a></li><li id="805491" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">201</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Success"</span>
+</span>}
+</code></pre></li><li class="list-group-item"><strong>Response&nbsp;&nbsp;<code>400</code></strong><a data-toggle="collapse" data-target="#486290" class="pull-right">Toggle</a></li><li id="486290" class="list-group-item collapse"><h5>Headers</h5><pre><code><span class="hljs-attribute">Content-Type</span>: <span class="hljs-string">application/json</span><br></code></pre><h5>Body</h5><pre><code>{
+    "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-number">400</span></span>,
+    "<span class="hljs-attribute">message</span>": <span class="hljs-value"><span class="hljs-string">"Bad Request"</span>
+</span>}
+</code></pre></li></ul></section></div></div></div></div></div></div><p style="text-align: center;" class="text-muted">Generated by <a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a> on 16 Mar 2014</p><div id="localFile" style="display: none; position: absolute; top: 0; left: 0; width: 100%; color: white; background: red; font-size: 150%; text-align: center; padding: 1em;">This page may not display correctly when opened as a local file. Instead, view it from a web server.
+
+</div></body><script src="//code.jquery.com/jquery-1.10.1.min.js"></script><script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script><script>(function() {
+  if (location.protocol === 'file:') {
+    document.getElementById('localFile').style.display = 'block';
+  }
+
+}).call(this);
+</script><script>(function() {
+  $('table').addClass('table');
+
+}).call(this);
+</script></html>

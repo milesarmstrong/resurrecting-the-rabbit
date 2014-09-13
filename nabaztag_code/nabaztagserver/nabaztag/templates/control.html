@@ -1,0 +1,134 @@
+<html>
+<head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    {% load staticfiles %}
+    <link href="{% static "colorful/colorPicker.css" %}" rel="stylesheet" media="screen">
+    <script src="{% static "colorful/jQuery.colorPicker.js" %}"></script>
+    <!-- Fetch the approximate address of the current location from Google -->
+    <script>
+        $.getJSON("http://maps.googleapis.com/maps/api/geocode/json?latlng={{nabaztag.latitude}},{{nabaztag.longitude}}&sensor=true", function (data) {
+            $('#physical_location').append(data.results[0].formatted_address)
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Begin Nabaztag information section -->
+        <div class="row">
+            <h1>Information</h1>
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <td><b>Name</b></td>
+                    <td>{{ nabaztag.name }}</td>
+                </tr>
+                <tr>
+                    <td><b>Unique Identifier</b></td>
+                    <td><code>{{ nabaztag.id }}</code></td>
+                </tr>
+                <tr>
+                    <td><b>Physical Location</b></td>
+                    <td id="physical_location"></td>
+                </tr>
+                <tr>
+                    <td><b>Map</b></td>
+                    <!-- Fetch a small map of the current location from Google. -->
+                    <td><img src="http://maps.googleapis.com/maps/api/staticmap?center={{ nabaztag.latitude }},{{ nabaztag.longitude }}&zoom=15&size=320x240&sensor=true"/></td>
+                </tr>
+                <tr>
+                    <td><b>Paired Nabaztags</b></td>
+                    <td>
+                        <ul class="list-unstyled">
+                        {% for paired_id, paired_name in paired_list.items %}
+                            <li><a href="/control/{{ paired_id }}">{{ paired_name }}</a> (<code>{{ paired_id }}</code>)</li>
+                        {% empty %}
+                            <li>None</li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- End information section -->
+
+        <!--  Begin control form section -->
+        <div class="row">
+            <h1>Nabaztag Control</h1>
+            {% load bootstrap %}
+            <div class="col-md-4">
+                <h3>Ears</h3>
+                <p>A value of 0 will cause the ears to point vertically upwards</p>
+                <p><b>Move Left Ear:</b></p>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ left_ear_form|bootstrap_inline }}
+                    <button type="submit" value="move_left_ear" class="btn btn-primary">Move</button>
+                </form>
+                <br>
+                <p><b>Move Right Ear:</b></p>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ right_ear_form|bootstrap_inline}}
+                    <button type="submit" value="move_right_ear" class="btn btn-primary">Move</button>
+                </form>
+                <br>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ reset_ears_form | bootstrap_inline }}
+                    <button type="submit" id="reset-both" value="reset_ears" class="btn btn-primary">Reset Both Ears</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <h3>LEDs</h3>
+                <p><b>Set Top LED Color:</b></p>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ top_led_form |bootstrap_inline }}
+                    <button type="submit" value="set_top_led" class="btn btn-primary">Set</button>
+                </form>
+                <br>
+                <p><b>Set Bottom LED Color:</b></p>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ bottom_led_form|bootstrap_inline }}
+                    <button type="submit" value="set_bottom_led" class="btn btn-primary">Set</button>
+                </form>
+                <br>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ reset_leds_form | bootstrap_inline }}
+                    <button type="submit" id="reset-both" value="reset_leds" class="btn btn-primary">Reset Both LEDs</button>
+                </form>
+            </div>
+            <div class="col-md-5">
+                <h3>Pairing</h3>
+                <p>Your Nabaztag will receive alerts from Nabaztags you have paired it with</p>
+                <p>If an ear is moved on a paired Nabaztag, the corresponding ear on your Nabaztag will do a full roatation.</p>
+                <p>If the head button is pressed on a paired Nabaztag, both ears on your Nabaztag will do a full rotation</p>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ create_pairing_form|bootstrap_inline }}
+                    <button type="submit" value="pair" class="btn btn-primary">Pair</button>
+                </form>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-inline">
+                    {% csrf_token %}
+                    {{ delete_pairing_form|bootstrap_inline }}
+                    <button type="submit" value="unpair" class="btn btn-primary">Unpair</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Text-to-Speech</h3>
+                <form method="post" action="/control/{{ nabaztag.id }}" class="form-horizontal">
+                    {% csrf_token %}
+                    {{ text_to_speech_form|bootstrap_horizontal }}
+                    <button type="submit" value="speak" class="btn btn-primary">Speak</button>
+                </form>
+            </div>
+        </div>
+        <!-- End control form section -->
+    </div>
+</body>
+</html>
